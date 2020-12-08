@@ -26,4 +26,18 @@ module.exports = {
   api: {
     prefix: "/api",
   },
+
+  jwt: {
+    secret: process.env.JWT_SECRET,
+    expiresIn: process.env.JWT_DURATION || "1h",
+    algorithms: ["H5256"],
+    exclude: {
+      path: [
+        {
+          url: "/api/login",
+          methods: ["POST"],
+        },
+      ],
+    },
+  },
 };
