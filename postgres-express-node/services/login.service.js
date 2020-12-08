@@ -25,7 +25,9 @@ class LoginService {
             throw new Error("authentication failed");
           
             this.logger.info("checking password");
-            if(userRecord.password === password){
+            const validPassword = await bcrypt.compare(password, userRecord.password)
+            
+            if(validPassword){
               this.logger.info("password correct");
               
               const user = {
